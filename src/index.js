@@ -1,8 +1,8 @@
 const express = require('express');
-const fakerAntiguo = require('faker');
-const {faker} = require('@faker-js/faker');
 const routeApi = require('./routes');
+const passport = require('passport');
 const { logErrors, errorHandler } = require('./middlewares/errorHandler.handler');
+const checkAuth = require('./middlewares/auth.handler');
 const app = express()
 
 //Authentication vs Authorization
@@ -16,10 +16,20 @@ const app = express()
 app.use(express.json())
 
 //routes
-app.get('/', (req, res) => {
+app.get('/', checkAuth, (req, res) => {
     res.send('<h1>hola mundo</h1>')
 }
 )
+//authentication con passport usando local strategy
+require('./utils/auth/index')
+//session esta en false debido a que se usara JWT
+app.post('/login', passport.authenticate('local', {session:false}), async (req, res, next) => { 
+    try {
+        res.json(req.user)
+    } catch (error) {
+        next(error)
+    }
+ })
 app.get('/users', (req, res) => {
     const { limit, offset } = req.query
     if (limit && offset) {

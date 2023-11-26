@@ -1,3 +1,8 @@
+GET http://localhost:3000
+Content-Type: application/json
+api: 123
+
+
 GET http://localhost:3000/api/v1/products?size=50
 
 
@@ -25,3 +30,12 @@ Content-Type: application/json
     "price":1000
 }
 
+//authentication
+//por defecto debe llamarse username pero se puede cambiar
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username":"aaa@gmail.com",
+    "password":"aaa123"
+}
