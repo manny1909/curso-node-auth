@@ -25,6 +25,8 @@ require('./utils/auth/index')
 //session esta en false debido a que se usara JWT
 app.post('/login', passport.authenticate('local', {session:false}), async (req, res, next) => { 
     try {
+        //elimina una propiedad del objeto
+        delete req.user.password
         res.json(req.user)
     } catch (error) {
         next(error)

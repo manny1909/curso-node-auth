@@ -6,3 +6,4 @@
 **passport
 *passport tiene muchas estrategias (auth con google, Facebook, etc) en este caso, usó passport-local
 *create local strategy (lógica propia)
+*implementación de strategy
