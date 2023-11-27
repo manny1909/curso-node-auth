@@ -17,5 +17,9 @@
 **Control de Roles
 *middleware para manejo de roles
 **Envío de correos con nodemailer
+**configuración de nodemailer con smtp (gmail)
+**implementación de envío de emails para recuperación o A2F
+**tokens de recuperación por medio de jwt
+
 
 
