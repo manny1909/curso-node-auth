@@ -7,3 +7,15 @@
 *passport tiene muchas estrategias (auth con google, Facebook, etc) en este caso, usó passport-local
 *create local strategy (lógica propia)
 *implementación de strategy
+**JWT
+*Que es JWT y por qué usarlo (stateless, fácil uso en multiplataformas)
+*Qué conforma el JWT (header, payload, verify signature)
+*Firmar y verificar jwt (keygen.io para crear secrets)
+*debugger pagina jwt (en el payload no se guarda info importante, solo info para identificar como id o roles)
+*refresh token
+*passport-jwt y crear JwtStrategy
+**Control de Roles
+*middleware para manejo de roles
+**Envío de correos con nodemailer
+
+

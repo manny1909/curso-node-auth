@@ -2,7 +2,7 @@ const express = require('express');
 const routeApi = require('./routes');
 const passport = require('passport');
 const { logErrors, errorHandler } = require('./middlewares/errorHandler.handler');
-const checkAuth = require('./middlewares/auth.handler');
+const {checkApiKey, checkAdminRole, checkRoles} = require('./middlewares/auth.handler');
 const app = express()
 
 //Authentication vs Authorization
@@ -16,7 +16,7 @@ const app = express()
 app.use(express.json())
 
 //routes
-app.get('/', checkAuth, (req, res) => {
+app.get('/', checkApiKey, (req, res) => {
     res.send('<h1>hola mundo</h1>')
 }
 )
@@ -30,6 +30,36 @@ app.post('/login', passport.authenticate('local', {session:false}), async (req, 
         res.json(req.user)
     } catch (error) {
         next(error)
+    }
+ })
+app.post('/user', passport.authenticate('jwt', {session:false}), (req, res, next) => { 
+    try {
+        const body = req.body
+        console.log('autenticado y usuario creado!')
+        res.status(201).json({user: body})
+    } catch (error) {
+        next(error)      
+    }
+})
+app.delete('/user', passport.authenticate('jwt', {session:false}), checkAdminRole,
+(req, res, next) => { 
+    try {
+        console.log('usuario eliminado')
+        res.status(204).json({message: 'user deleted!'})
+    } catch (error) {
+        next(error)      
+    }
+})
+
+app.patch('/user', passport.authenticate('jwt', {session:false}), checkRoles('admin', 'pwc user'),
+(req, res, next) => { 
+    try {
+        const user = req.body
+        delete user.password
+        console.log('usuario editado')
+        res.status(200).json({message: 'user deleted!', user })
+    } catch (error) {
+        next(error)      
     }
  })
 app.get('/users', (req, res) => {

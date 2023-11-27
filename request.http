@@ -39,3 +39,36 @@ Content-Type: application/json
     "email":"aaa@gmail.com",
     "password":"aaa123"
 }
+
+POST http://localhost:3000/user/
+Content-Type: application/json
+
+{
+    "email":"aaa2@gmail.com",
+    "password":"aaa1232"
+    
+}
+
+POST http://localhost:3000/user/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjF9LCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE3MDEwNjQ0NjV9.Yxwu_E7ovqb-s0-Bno7idgCCk8T4juXlyKoXSn5mp9I 
+
+{
+    "email":"aaa2@gmail.com",
+    "password":"aaa1232"
+    
+}
+
+DELETE  http://localhost:3000/user/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjF9LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDEwNjc1Mzd9.BffyLj28PBYPzew-EYDOkcVCHtsdwEnNLprsK_2OMq8 
+
+PATCH  http://localhost:3000/user/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjF9LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MDEwNjc1Mzd9.BffyLj28PBYPzew-EYDOkcVCHtsdwEnNLprsK_2OMq8
+
+{
+    "email":"aaa2@gmail.com",
+    "password":"aaa1232"
+    
+}
