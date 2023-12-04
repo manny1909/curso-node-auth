@@ -8,7 +8,7 @@ const secret = process.env.SECRET || 'mySecret'
 class AuthService {
     async findUser(email, password) {
         //username es el email en este caso
-        const user = await findByEmail(email)
+        const user = await this.findByEmail(email)
         if (!user) {
             boom.unauthorized()
         } else {
