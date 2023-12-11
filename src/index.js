@@ -2,6 +2,9 @@ const express = require('express');
 const routeApi = require('./routes');
 const passport = require('passport');
 const { logErrors, errorHandler } = require('./middlewares/errorHandler.handler');
+const {models} = require('../models/index').sequelize; 
+const ormErrorHandler = require('./middlewares/ormError.handler');
+
 const {checkApiKey, checkAdminRole, checkRoles} = require('./middlewares/auth.handler');
 const app = express()
 
@@ -62,12 +65,14 @@ app.patch('/user', passport.authenticate('jwt', {session:false}), checkRoles('ad
         next(error)      
     }
  })
-app.get('/users', (req, res) => {
+app.get('/users', async (req, res) => {
     const { limit, offset } = req.query
+    const users2 = await models.User.findAll() 
     if (limit && offset) {
         res.json({
             limit,
-            offset
+            offset,
+            users: users2 ? users2 : undefined
         })
     } else {
         res.send('no hay parámetros')
@@ -77,8 +82,9 @@ routeApi(app)
 
 //ERROR MIDDLEWARES
 app.use(logErrors)
+app.use(ormErrorHandler)
 app.use(errorHandler)
 
 app.listen(3000, () => {
-    console.log('listening on port 3000')
+    console.log('listening on port 3000') 
 })
