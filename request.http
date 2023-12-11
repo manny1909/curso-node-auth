@@ -72,3 +72,58 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjF9L
     "password":"aaa1232"
     
 }
+
+// ejemplos con base de datos
+
+//crear usuario (encriptación de la password)
+
+POST http://localhost:3000/api/v1/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsInJvbGUiOlt7ImlkIjoxLCJuYW1lIjoiYWRtaW5pc3RyYXRvciIsInBlcm1pc3Npb25TY2FsZSI6OTksIlVzZXJSb2xlIjp7ImlkIjoxLCJ1c2VySWQiOjQsInJvbGVJZCI6MX19LHsiaWQiOjIsIm5hbWUiOiJjdXN0b21lciIsInBlcm1pc3Npb25TY2FsZSI6MSwiVXNlclJvbGUiOnsiaWQiOjIsInVzZXJJZCI6NCwicm9sZUlkIjoyfX1dLCJpYXQiOjE3MDIyNzIxOTV9.D88wFyL_-jPILS9-1lXaePkrpSLTY3McLsRlbWIZGGI
+
+{
+    "username": "Herrera",
+    "email": "jhonny@gmail.com",
+    "password": "jhoony prueba"
+}
+
+POST http://localhost:3000/api/v1/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsInJvbGUiOlt7ImlkIjoxLCJuYW1lIjoiYWRtaW5pc3RyYXRvciIsInBlcm1pc3Npb25TY2FsZSI6OTksIlVzZXJSb2xlIjp7ImlkIjoxLCJ1c2VySWQiOjQsInJvbGVJZCI6MX19LHsiaWQiOjIsIm5hbWUiOiJjdXN0b21lciIsInBlcm1pc3Npb25TY2FsZSI6MSwiVXNlclJvbGUiOnsiaWQiOjIsInVzZXJJZCI6NCwicm9sZUlkIjoyfX1dLCJpYXQiOjE3MDIyNzIxOTV9.D88wFyL_-jPILS9-1lXaePkrpSLTY3McLsRlbWIZGGI
+
+{
+    "username": "usuario_Prueba",
+    "email": "pruebacursoplatzi@gmail.com",
+    "password": "prueba"
+}
+
+
+//validar password con bcrypt y generar jwt
+POST http://localhost:3000/api/v1/user/authenticate
+Content-Type: application/json
+
+{
+    "email": "jhonnyherrera1998@gmail.com",
+    "password": "admin"
+}
+ 
+POST http://localhost:3000/api/v1/user/authenticate
+Content-Type: application/json
+
+{
+    "email": "jhonny.javier.herrera.rincon@pwc.com",
+    "password": "admin"
+}
+
+//usuario con rol administrator, no olvidar cambiar las ids de los user a eliminar 
+DELETE  http://localhost:3000/api/v1/user/16
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsInJvbGUiOlt7ImlkIjoxLCJuYW1lIjoiYWRtaW5pc3RyYXRvciIsInBlcm1pc3Npb25TY2FsZSI6OTksIlVzZXJSb2xlIjp7ImlkIjoxLCJ1c2VySWQiOjQsInJvbGVJZCI6MX19LHsiaWQiOjIsIm5hbWUiOiJjdXN0b21lciIsInBlcm1pc3Npb25TY2FsZSI6MSwiVXNlclJvbGUiOnsiaWQiOjIsInVzZXJJZCI6NCwicm9sZUlkIjoyfX1dLCJpYXQiOjE3MDIyNzIxOTV9.D88wFyL_-jPILS9-1lXaePkrpSLTY3McLsRlbWIZGGI
+
+//usuario sin role adminitrator
+DELETE  http://localhost:3000/api/v1/user/16
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInJvbGUiOltdLCJpYXQiOjE3MDIyNzM3MzR9.qsLOC1_F977YuJj5cWZJglqvu4iflOXK1Fg41kzxMeA
+
+
+

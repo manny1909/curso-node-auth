@@ -22,9 +22,10 @@ function checkRoles(...roles) {
 
     return (req, res, next) => {
         const user = req.user
-        console.log(user)
+        const userRoles = user.role.map(x=>x.name)
+        console.log(userRoles)
         console.log(roles)
-        if (roles.includes(user.role)) {
+        if (roles.some(item => userRoles.includes(item))) {
             next()
         } else {
             next(boom.unauthorized())

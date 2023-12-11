@@ -6,7 +6,7 @@ const LocalStrategy = new Strategy({
     //desde aca se puede modificar el nombre de username por el nombre que quieras
     usernameField: 'email',
     passwordField: 'password',
-},
+    },
     async (username, password, done) => {
         try {
             const user = await _authService.findUser(username, password)

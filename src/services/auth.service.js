@@ -2,13 +2,16 @@ const boom = require('@hapi/boom');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
+const { models } = require('./../libs/sequelize');
+
+const User = models.User;
 
 const secret = process.env.SECRET || 'mySecret'
 
 class AuthService {
     async findUser(email, password) {
         //username es el email en este caso
-        const user = await this.findByEmail(email)
+        const user = await User.findOne({ where: { email }, include: ['roles'] })
         if (!user) {
             boom.unauthorized()
         } else {
@@ -33,7 +36,7 @@ class AuthService {
     signToken(user) {
         const payload = {
             sub: user.id,
-            role: user.role,
+            role: user.roles,
         }
         return jwt.sign(payload, secret)
     }
@@ -41,7 +44,7 @@ class AuthService {
         return jwt.verify(token, secret)
     }
     async sendRecoveryPasswordEmail(email){
-        const user = await this.findByEmail(email)
+        const user = await User.findOne({ where: { email } })
         if (!user) {
             throw boom.unauthorized()
         } else {

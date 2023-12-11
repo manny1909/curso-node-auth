@@ -1,6 +1,6 @@
 const express = require('express');
 const ProductService = require('../services/product.service');
-const validatorHandler = require('../middlewares/validator.hander');
+const validatorHandler = require('../middlewares/validator.handler');
 const { getProductScheme, createProductScheme, updateProductScheme } = require('../schemas/product.schema');
 
 const productsRouter = express()
@@ -49,4 +49,4 @@ productsRouter.delete('/:id', (req, res) => {
     const respuesta = _productService.delete(id)
     res.json(respuesta) 
  })
-module.exports = productsRouter
+module.exports = productsRouter 
