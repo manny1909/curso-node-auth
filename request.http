@@ -74,6 +74,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiaWQiOjF9L
 }
 
 // ejemplos con base de datos
+GET http://localhost:3000/api/v1/products?size=50
+
+
+GET http://localhost:3000/api/v1/products?size=50
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInJvbGUiOltdLCJpYXQiOjE3MDIyNzU0MzN9.e7kf4v_1nVzFE0OYWVYKh9dmFUq_CALaCLcG_wEaJWM
 
 //crear usuario (encriptación de la password)
 
@@ -82,8 +87,8 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsInJvbGUiOlt7ImlkIjoxLCJuYW1lIjoiYWRtaW5pc3RyYXRvciIsInBlcm1pc3Npb25TY2FsZSI6OTksIlVzZXJSb2xlIjp7ImlkIjoxLCJ1c2VySWQiOjQsInJvbGVJZCI6MX19LHsiaWQiOjIsIm5hbWUiOiJjdXN0b21lciIsInBlcm1pc3Npb25TY2FsZSI6MSwiVXNlclJvbGUiOnsiaWQiOjIsInVzZXJJZCI6NCwicm9sZUlkIjoyfX1dLCJpYXQiOjE3MDIyNzIxOTV9.D88wFyL_-jPILS9-1lXaePkrpSLTY3McLsRlbWIZGGI
 
 {
-    "username": "Herrera",
-    "email": "jhonny@gmail.com",
+    "username": "Herrera2",
+    "email": "jhonny2@gmail.com",
     "password": "jhoony prueba"
 }
 

@@ -7,7 +7,6 @@ const { createUserScheme, updateUserScheme, getUserScheme, loginUserScheme } = r
 const { checkApiKey, checkAdminRole, checkRoles } = require('../middlewares/auth.handler');
 const AuthService = require('../services/auth.service');
 const usersRouter = express()
-require('./../utils/auth/index')
 const _userService = new UserService()
 const _authService = new AuthService()
 

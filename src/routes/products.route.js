@@ -1,3 +1,4 @@
+const passport = require('passport');
 const express = require('express');
 const ProductService = require('../services/product.service');
 const validatorHandler = require('../middlewares/validator.handler');
@@ -6,7 +7,7 @@ const { getProductScheme, createProductScheme, updateProductScheme } = require('
 const productsRouter = express()
 const _productService = new ProductService()
 
-productsRouter.get('/', (req, res) => {
+productsRouter.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     const {size} = req.query
     const products = _productService.find()
     res.json(products)
